@@ -41,71 +41,89 @@ class FormViewController: UIViewController {
     func insertData(){
         
         
-        
-        let fname = firstNameField.text ?? "";
-        let lname = LastNameField.text ?? "";
-        let email = EmailField.text ?? "";
-        let phone = PhoneField.text ?? "";
-        let notes = NotesField.text ?? "";
-      
-        
-        let intPhone = Int(phone) ?? 0;
-        
-        
-        
-        let insertQuery = "INSERT INTO ContactInfo (FirstName, LastName, Email, Phone, Notes) VALUES (?, ?, ?, ?, ?)"
-        
-        
-        
-        
-        var statement: OpaquePointer?
-        
-        if let path = Bundle.main.path(forResource: "IOS_DB", ofType: "db") {
-            print("Database path: \(path)")
-            
-            if sqlite3_open(path, &db) == SQLITE_OK {
-                print("Successfully opened connection to database.")
-                
-                if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
-                    sqlite3_bind_text(statement, 1, (fname as NSString).utf8String, -1, nil)
-                    sqlite3_bind_text(statement, 2, (lname as NSString).utf8String, -1, nil)
-                    sqlite3_bind_text(statement, 3, (email as NSString).utf8String, -1, nil)
-                    sqlite3_bind_int(statement, 4, Int32(intPhone) ?? 0)
-                    sqlite3_bind_text(statement, 5, (notes as NSString).utf8String, -1, nil)
+        let fname = firstNameField.text ?? ""
+           let lname = LastNameField.text ?? ""
+           let email = EmailField.text ?? ""
+           let phone = PhoneField.text ?? ""
+           let notes = NotesField.text ?? ""
+           let intPhone = Int(phone) ?? 0
+           
+           let insertQuery = "INSERT INTO ContactInfo (FirstName, LastName, Email, Phone, Notes) VALUES (?, ?, ?, ?, ?)"
+           
+           var statement: OpaquePointer?
+           
+           if let databasePath = getDatabasePath() {
+               if sqlite3_open(databasePath, &db) == SQLITE_OK {
+                   
+                   print(databasePath);
+                   if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
+                       sqlite3_bind_text(statement, 1, (fname as NSString).utf8String, -1, nil)
+                       sqlite3_bind_text(statement, 2, (lname as NSString).utf8String, -1, nil)
+                       sqlite3_bind_text(statement, 3, (email as NSString).utf8String, -1, nil)
+                       sqlite3_bind_int(statement, 4, Int32(intPhone) ?? 0)
+                       sqlite3_bind_text(statement, 5, (notes as NSString).utf8String, -1, nil)
 
-                    if sqlite3_step(statement) == SQLITE_DONE {
-                        print("Successfully inserted row.")
-                        let alertController = UIAlertController(title: "Success", message: "Record inserted successfully.", preferredStyle: .alert)
+                       if sqlite3_step(statement) == SQLITE_DONE {
+                           print("Successfully inserted row.")
+                           let alertController = UIAlertController(title: "Success", message: "Record inserted successfully.", preferredStyle: .alert)
 
-                        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                            alertController.dismiss(animated: true, completion: nil)
-                        }
+                           let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                               alertController.dismiss(animated: true, completion: nil)
+                           }
 
-                        alertController.addAction(okAction)
+                           alertController.addAction(okAction)
 
-                        self.present(alertController, animated: true, completion: nil)
-                        
-                        
-                    } else {
-                        print("Could not insert row.")
-                    }
-                    
-                    sqlite3_finalize(statement)
-                }
-
-
-            
-            } else {
-                print("Unable to open database.")
-            }
-        } else {
-            print("Database not found.")
-        }
-        
+                           self.present(alertController, animated: true, completion: nil)
+                       } else {
+                           print("Could not insert row.")
+                       }
+                       
+                       sqlite3_finalize(statement)
+                   }
+                   sqlite3_close(db)
+               } else {
+                   print("Unable to open database.")
+               }
+           } else {
+               print("Could not get database path.")
+           }
         
     }
     
     
+    
+    
+    func getDatabasePath() -> String? {
+        if let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+            let databasePath = "\(documentsPath)/IOS_DB.db"
+            if !FileManager.default.fileExists(atPath: databasePath) {
+                if let bundlePath = Bundle.main.path(forResource: "IOS_DB", ofType: "db") {
+                    do {
+                        try FileManager.default.copyItem(atPath: bundlePath, toPath: databasePath)
+                    } catch {
+                        print("Error copying database: \(error)")
+                        return nil
+                    }
+                } else {
+                    print("Database not found in bundle.")
+                    return nil
+                }
+            }
+            return databasePath
+        } else {
+            print("Documents directory not found.")
+            return nil
+        }
+        
+        
+    }
+   
+
+
+
+
+
+
     
     
     @IBAction func SubmitPressed(_ sender: Any) {
