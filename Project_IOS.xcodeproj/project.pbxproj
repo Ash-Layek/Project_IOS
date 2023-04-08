@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6599F129E1CFC1002210EB /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6599F029E1CFC1002210EB /* ContactDetailsViewController.swift */; };
 		8DA9F8B329DC9CA80035975E /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9F8B229DC9CA80035975E /* ContactListViewController.swift */; };
 		8DF154A229DA199F0010A720 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF154A129DA199F0010A720 /* AppDelegate.swift */; };
 		8DF154A429DA199F0010A720 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF154A329DA199F0010A720 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D6599F029E1CFC1002210EB /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		8DA9F8B229DC9CA80035975E /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		8DF1549E29DA199F0010A720 /* Project_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF154A129DA199F0010A720 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				8DF154BC29DA25700010A720 /* SplashViewController.swift */,
 				8DF154BE29DA2ACA0010A720 /* FormViewController.swift */,
 				8DA9F8B229DC9CA80035975E /* ContactListViewController.swift */,
+				8D6599F029E1CFC1002210EB /* ContactDetailsViewController.swift */,
 			);
 			path = Project_IOS;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				8DF154A229DA199F0010A720 /* AppDelegate.swift in Sources */,
 				8DF154A429DA199F0010A720 /* SceneDelegate.swift in Sources */,
 				8DA9F8B329DC9CA80035975E /* ContactListViewController.swift in Sources */,
+				8D6599F129E1CFC1002210EB /* ContactDetailsViewController.swift in Sources */,
 				8DF154BD29DA25700010A720 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

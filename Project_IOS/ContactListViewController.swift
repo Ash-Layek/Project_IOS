@@ -8,7 +8,7 @@
 import UIKit
 import SQLite3
 
-class ContactListViewController: UIViewController {
+class ContactListViewController: UIViewController, UITableViewDelegate {
     
     
     var lastNames = [String]();
@@ -25,11 +25,15 @@ class ContactListViewController: UIViewController {
         var db: OpaquePointer?
 
         
+        TB_LIST.delegate = self;
+        
+        TB_LIST.dataSource = self;
+        
         var statement: OpaquePointer?
       
 
         if let databasePath = getDatabasePath(), sqlite3_open(databasePath, &db) == SQLITE_OK {
-            let query = "SELECT LastName FROM ContactInfo"
+            let query = "SELECT LastName FROM ContactInfo ORDER BY LASTNAME ASC"
             var statement: OpaquePointer?
             
             if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
@@ -37,14 +41,16 @@ class ContactListViewController: UIViewController {
                 while sqlite3_step(statement) == SQLITE_ROW {
                     if let cString = sqlite3_column_text(statement, 0) {
                         let lastName = String(cString: cString)
+                        
                         lastNames.append(lastName)
+                        
                     }
                 }
                 
                 sqlite3_finalize(statement)
                 sqlite3_close(db)
                 
-                print("Retrieved last names: \(lastNames)")
+               
             } else {
                 print("Error preparing SELECT statement: \(String(cString: sqlite3_errmsg(db)))")
             }
@@ -113,6 +119,27 @@ extension ContactListViewController : UITableViewDataSource {
         return cell;
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        
+        if let vc = storyboard?.instantiateViewController(identifier: "ContactDetailsViewController") as? ContactDetailsViewController {
+            
+            vc.lastname = lastNames[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
+        
+            }
+    
+ 
+    
+    
+ 
+
 
 
     	
