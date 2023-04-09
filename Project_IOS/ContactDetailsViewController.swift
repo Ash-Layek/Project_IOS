@@ -22,6 +22,12 @@ class ContactDetailsViewController: UIViewController {
     
     var lastname = "";
     
+    var firstname = "";
+    
+    var email = ""
+    
+    var phone = ""
+    
     var notes__ = "";
     
     override func viewDidLoad() {
@@ -49,6 +55,8 @@ class ContactDetailsViewController: UIViewController {
                     
                         print(firstName)
                         myTestLabel.text = firstName;
+                        
+                        firstname = firstName;
 
                         
                     }
@@ -61,6 +69,9 @@ class ContactDetailsViewController: UIViewController {
                         
                         firstNameLBL.text = lastName;
                         
+                        lastname  = lastName;
+                        
+                        
                         
                     }
                     
@@ -72,6 +83,9 @@ class ContactDetailsViewController: UIViewController {
                         
                         emailLBL.text = lastName
                         
+                        email = lastName;
+                        
+                        
                     }
                     
                     if let cString = sqlite3_column_text(statement, 3) {
@@ -82,6 +96,9 @@ class ContactDetailsViewController: UIViewController {
                         
                         phoneLBL.text = lastName
                         
+                        phone = lastName;
+                        
+                        
                     }
                     
                     if let cString = sqlite3_column_text(statement, 4) {
@@ -91,6 +108,9 @@ class ContactDetailsViewController: UIViewController {
                        print(lastName)
                         
                         notesTXT.text = lastName
+                        
+                        notes__ = lastName;
+                        
                         
                     }
                 }
@@ -111,6 +131,24 @@ class ContactDetailsViewController: UIViewController {
         
     }
     
+    @IBAction func editClicked(_ sender: Any) {
+        
+        if let vc = storyboard?.instantiateViewController(identifier: "EditContactViewController") as? EditContactViewController {
+            
+            
+            vc.firstName = firstname;
+            
+            vc.lastName = lastname;
+            
+            vc.email = email;
+            
+            vc.phone = phone;
+            
+            vc.notes = notes__;
+            
+            self.navigationController?.pushViewController(vc, animated: true);
+        }
+    }
     
     @IBAction func closeButtonClicked(_ sender: Any) {
         
