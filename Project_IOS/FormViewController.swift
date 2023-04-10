@@ -128,9 +128,64 @@ class FormViewController: UIViewController {
     
     @IBAction func SubmitPressed(_ sender: Any) {
         
-        insertData();
+        
+        if (firstNameField.text?.isEmpty == false && LastNameField.text?.isEmpty == false && EmailField.text?.isEmpty == false && PhoneField.text?.isEmpty == false && NotesField.text.isEmpty == false){
+            
+            
+            
+            
+            if (isValidEmail(EmailField.text ?? "")){
+                
+                
+                insertData();
+                
+                
+                
+            } else {
+                
+                
+                let alertController = UIAlertController(title: "Error", message: "Email Formatting is wrong..", preferredStyle: .alert)
+
+                let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                    alertController.dismiss(animated: true, completion: nil)
+                }
+
+                alertController.addAction(okAction)
+
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+            }
+            
+            
+            
+            
+            
+        } else {
+            
+            
+            let alertController = UIAlertController(title: "Error", message: "No  Field Should be Left Empty.", preferredStyle: .alert)
+
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                alertController.dismiss(animated: true, completion: nil)
+            }
+
+            alertController.addAction(okAction)
+
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+      //  insertData();
+        
+        
     }
     
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
     
     
     /*

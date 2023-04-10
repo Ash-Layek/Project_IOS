@@ -29,6 +29,8 @@ class ContactListViewController: UIViewController, UITableViewDelegate {
         
         TB_LIST.dataSource = self;
         
+        
+        
         var statement: OpaquePointer?
       
 
@@ -62,6 +64,13 @@ class ContactListViewController: UIViewController, UITableViewDelegate {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        TB_LIST.reloadData()
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -71,6 +80,11 @@ class ContactListViewController: UIViewController, UITableViewDelegate {
     */
 
 }
+
+        
+
+
+
 
 
 func getDatabasePath() -> String? {
@@ -103,6 +117,7 @@ extension ContactListViewController : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         
         return lastNames.count
         

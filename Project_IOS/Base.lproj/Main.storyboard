@@ -195,6 +195,9 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveClicked:" destination="0gR-5G-te7" eventType="touchUpInside" id="fpm-SY-hdI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eh7-4K-OgF"/>
@@ -215,7 +218,7 @@
         <!--ContactList-->
         <scene sceneID="1vb-rP-F3P">
             <objects>
-                <viewController title="ContactList" id="127-fL-w2P" customClass="ContactListViewController" customModule="Project_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactListViewController" title="ContactList" id="127-fL-w2P" customClass="ContactListViewController" customModule="Project_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nfq-Kt-Kvd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
