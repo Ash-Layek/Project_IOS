@@ -92,6 +92,17 @@
                                     <action selector="editClicked:" destination="BXW-fl-CoB" eventType="touchUpInside" id="5JQ-tF-EFf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRT-D1-jKT">
+                                <rect key="frame" x="283" y="728" width="74" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                                <connections>
+                                    <action selector="DeleteClicked:" destination="BXW-fl-CoB" eventType="touchUpInside" id="obE-4i-l2H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iqB-vs-c7i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

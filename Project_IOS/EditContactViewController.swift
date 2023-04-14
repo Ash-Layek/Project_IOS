@@ -48,6 +48,17 @@ class EditContactViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        
+      
+        
+        Email_TXTBOX.resignFirstResponder();
+        
+        Phone_TXTBOX.resignFirstResponder()
+        
+        Notes_TXTVIEW.resignFirstResponder();
+        
+        
+        
         First_TXTBOX.text = firstName;
         
         Last_TXTBOX.text = lastName;
@@ -59,6 +70,12 @@ class EditContactViewController: UIViewController {
         Notes_TXTVIEW.text = notes;
         
         Notes_TXTVIEW.isEditable = false;
+        
+        
+        
+        
+       
+        
         
         
         

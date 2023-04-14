@@ -30,6 +30,21 @@ class FormViewController: UIViewController {
        
         
         
+        NotesField.resignFirstResponder();
+        
+        PhoneField.resignFirstResponder();
+        
+        EmailField.resignFirstResponder();
+        
+        LastNameField.resignFirstResponder();
+        
+        firstNameField.resignFirstResponder();
+        
+        
+        
+        
+        
+        
         
         
        

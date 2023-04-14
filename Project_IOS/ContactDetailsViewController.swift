@@ -32,7 +32,7 @@ class ContactDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         
@@ -48,24 +48,24 @@ class ContactDetailsViewController: UIViewController {
             if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
                 
                 sqlite3_bind_text(statement, 1, (lastname as NSString).utf8String, -1, nil)
-               
+                
                 while sqlite3_step(statement) == SQLITE_ROW {
                     if let cString = sqlite3_column_text(statement, 0) {
                         let firstName = String(cString: cString)
-                    
+                        
                         print(firstName)
                         myTestLabel.text = firstName;
                         
                         firstname = firstName;
-
+                        
                         
                     }
                     
                     if let cString = sqlite3_column_text(statement, 1) {
                         let lastName = String(cString: cString)
-                    
                         
-                       print(lastName)
+                        
+                        print(lastName)
                         
                         firstNameLBL.text = lastName;
                         
@@ -77,9 +77,9 @@ class ContactDetailsViewController: UIViewController {
                     
                     if let cString = sqlite3_column_text(statement, 2) {
                         let lastName = String(cString: cString)
-                    
                         
-                       print(lastName)
+                        
+                        print(lastName)
                         
                         emailLBL.text = lastName
                         
@@ -90,9 +90,9 @@ class ContactDetailsViewController: UIViewController {
                     
                     if let cString = sqlite3_column_text(statement, 3) {
                         let lastName = String(cString: cString)
-                    
                         
-                       print(lastName)
+                        
+                        print(lastName)
                         
                         phoneLBL.text = lastName
                         
@@ -103,9 +103,9 @@ class ContactDetailsViewController: UIViewController {
                     
                     if let cString = sqlite3_column_text(statement, 4) {
                         let lastName = String(cString: cString)
-                    
                         
-                       print(lastName)
+                        
+                        print(lastName)
                         
                         notesTXT.text = lastName
                         
@@ -118,15 +118,15 @@ class ContactDetailsViewController: UIViewController {
                 sqlite3_finalize(statement)
                 sqlite3_close(db)
                 
-               
+                
             } else {
                 print("Error preparing SELECT statement: \(String(cString: sqlite3_errmsg(db)))")
             }
         } else {
             print("Error opening database.")
         }
-
-
+        
+        
         
         
     }
@@ -134,7 +134,6 @@ class ContactDetailsViewController: UIViewController {
     @IBAction func editClicked(_ sender: Any) {
         
         if let vc = storyboard?.instantiateViewController(identifier: "EditContactViewController") as? EditContactViewController {
-            
             
             vc.firstName = firstname;
             
@@ -167,24 +166,24 @@ class ContactDetailsViewController: UIViewController {
         var db: OpaquePointer?
         
         notes__  = notesTXT.text
-
+        
         var statement: OpaquePointer?
         let query = "UPDATE ContactInfo SET Notes = ? WHERE LastName = ?"
-
+        
         if let databasePath = getDatabasePath(), sqlite3_open(databasePath, &db) == SQLITE_OK {
             if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
                 sqlite3_bind_text(statement, 1, notes__, -1, nil)
                 sqlite3_bind_text(statement, 2, lastname, -1, nil)
-
+                
                 // Begin a transaction
                 if sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil) != SQLITE_OK {
                     print("Error beginning transaction: \(String(cString: sqlite3_errmsg(db)))")
                     return
                 }
-
+                
                 if sqlite3_step(statement) != SQLITE_DONE {
                     print("Error updating notes: \(String(cString: sqlite3_errmsg(db)))")
-
+                    
                     // Roll back the transaction if there was an error
                     if sqlite3_exec(db, "ROLLBACK TRANSACTION", nil, nil, nil) != SQLITE_OK {
                         print("Error rolling back transaction: \(String(cString: sqlite3_errmsg(db)))")
@@ -197,20 +196,20 @@ class ContactDetailsViewController: UIViewController {
                         print("Update successful!")
                     }
                 }
-
+                
                 sqlite3_finalize(statement)
             } else {
                 print("Error preparing UPDATE statement: \(String(cString: sqlite3_errmsg(db)))")
             }
-
+            
             sqlite3_close(db)
         } else {
             print("Error opening database.")
         }
-
-
-    
-        	
+        
+        
+        
+        
     }
     
     
@@ -239,12 +238,48 @@ class ContactDetailsViewController: UIViewController {
             return nil
         }
     }
-
-   
     
-
+    
+    @IBAction func DeleteClicked(_ sender: Any) {
+        
+       deleted()
+        if let List = navigationController?.viewControllers.first as? ContactListViewController {
+             List.TB_LIST.reloadData()
+         }
+         
+         navigationController?.popViewController(animated: true)
+        
+    }
+    
+    
+    
+    func deleted(){
+        
+    
+        var db: OpaquePointer?
+        if let databasePath = getDatabasePath(), sqlite3_open(databasePath, &db) == SQLITE_OK {
+            let query = "DELETE FROM ContactInfo WHERE LastName = ?"
+            var statement: OpaquePointer?
+            if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+                sqlite3_bind_text(statement, 1, (lastname as NSString).utf8String, -1, nil)
+                if sqlite3_step(statement) == SQLITE_DONE {
+                    print("Deleted all records with last name \(lastname)")
+                } else {
+                    print("Error deleting records")
+                }
+            }
+            sqlite3_finalize(statement)
+            sqlite3_close(db)
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 }
-
-
-
 

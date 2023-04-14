@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D0A5B9029E33C8A00F7D3E5 /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A5B8F29E33C8A00F7D3E5 /* EditContactViewController.swift */; };
 		8D6599F129E1CFC1002210EB /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6599F029E1CFC1002210EB /* ContactDetailsViewController.swift */; };
+		8D837E1029E5CD2700DEBB5A /* Tab1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D837E0F29E5CD2700DEBB5A /* Tab1.png */; };
 		8DA9F8B329DC9CA80035975E /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9F8B229DC9CA80035975E /* ContactListViewController.swift */; };
 		8DF154A229DA199F0010A720 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF154A129DA199F0010A720 /* AppDelegate.swift */; };
 		8DF154A429DA199F0010A720 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF154A329DA199F0010A720 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		8D0A5B8F29E33C8A00F7D3E5 /* EditContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
 		8D6599F029E1CFC1002210EB /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
+		8D837E0F29E5CD2700DEBB5A /* Tab1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tab1.png; sourceTree = "<group>"; };
 		8DA9F8B229DC9CA80035975E /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		8DF1549E29DA199F0010A720 /* Project_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF154A129DA199F0010A720 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				8DF154AD29DA19A10010A720 /* Assets.xcassets */,
 				8DF154AF29DA19A10010A720 /* LaunchScreen.storyboard */,
 				8DF154B229DA19A10010A720 /* Info.plist */,
+				8D837E0F29E5CD2700DEBB5A /* Tab1.png */,
 				8DF154BA29DA24270010A720 /* default-nscc.jpg */,
 				8DF154AA29DA199F0010A720 /* Project_IOS.xcdatamodeld */,
 				8DF154BC29DA25700010A720 /* SplashViewController.swift */,
@@ -152,6 +155,7 @@
 				8DF154B129DA19A10010A720 /* LaunchScreen.storyboard in Resources */,
 				8DF154B929DA1DCA0010A720 /* IOS_DB.db in Resources */,
 				8DF154BB29DA24270010A720 /* default-nscc.jpg in Resources */,
+				8D837E1029E5CD2700DEBB5A /* Tab1.png in Resources */,
 				8DF154AE29DA19A10010A720 /* Assets.xcassets in Resources */,
 				8DF154A929DA199F0010A720 /* Main.storyboard in Resources */,
 			);
